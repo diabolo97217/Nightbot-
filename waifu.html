@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Waifu API</title></head>
+<body>
+<script>
+const rawList = `
+雷姆
+亞絲娜
+加藤惠
+中野三玖
+（此處請貼上你全部老婆名單，每行一個）
+`;
+
+const list = rawList.split("\n").map(x => x.trim()).filter(x => x);
+
+const params = new URLSearchParams(location.search);
+const date = params.get("date") || "20250101";
+const user = params.get("user") || "test";
+
+let sum = 0;
+for (let c of (date + user)) sum += c.charCodeAt(0);
+
+document.body.innerText = list[sum % list.length];
+</script>
+</body>
+</html>
